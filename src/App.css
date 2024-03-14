@@ -1,0 +1,129 @@
+:root {
+  --color-black: #2D3436;
+  --color-gray: #A4A4A4;
+  --color-lightGray: #CACACA;
+  --color-blue: #24A6D9;
+  --color-lightBlue: #A7CBD9;
+  --color-white: #FFFFFF;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionheader {
+  width: 500px;
+}
+
+.input {
+  width: 500px; 
+  border-width: 6px;
+}
+
+.colorContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  width: 100%; 
+}
+
+.section {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  justify-content: flex-end;
+  margin-left: 64px;
+  border-bottom-width: 3px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--color-black);
+}
+
+.taskCount {
+  margin-top: 4px;
+  margin-bottom: 30px;
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+
+.footer {
+  flex-direction: row;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  height: 48px;
+  border-width: 1px;
+  border-radius: 6px;
+  margin-right: 8px;
+  width: 500px; 
+}
+
+.addTask {
+  border-radius: 30px;
+  padding: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskContainer {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  border-color: var(--color-lightGray);
+  max-width: 500px;
+  min-width: 300px;
+  margin: 15px;
+}
+
+.task {
+  color: var(--color-black);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.deleteIcon {
+  color: var(--color-black);
+  font-size: 16px;
+}
+
+.colorContainer {
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.colorSelector {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.deleteContainer {
+  align-self: flex-end;
+}
+
+button{
+  border: #FFFFFF;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  color: #FFFFFF;
+}
+
+.addButton{
+  width: 50px;
+  height: 30px;
+}
