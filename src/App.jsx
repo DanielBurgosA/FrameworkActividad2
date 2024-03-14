@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import './App.css'; 
+import { useState } from 'react';
+import './App.css';
 
-import Colors from './assets/Colors'; 
+import Colors from './assets/Colors';
 
 export default function App() {
   const colorsArray = ["#2455D9", "#24D94E", "#D92424", "#D9D424", "#9424D9", "#D97E24"];
@@ -12,7 +12,7 @@ export default function App() {
   const [taskTitle, setTaskTitle] = useState('');
 
   const taskCount = list.length;
-  const completedCount = list.reduce((count, task) => task.completed ? count + 1 : count, 0);
+  const completedCount = list.filter(task => task.completed).length;
 
   const handleColorChange = (color) => {
     setColor(color);
@@ -41,10 +41,6 @@ export default function App() {
     setList(list.filter(task => task.id !== taskId));
   };
 
-  useEffect(() => {
-
-  }, [list]);
-
   return (
     <div className="container">
       <div className="sectionheader" style={{ borderColor: color }}>
@@ -64,7 +60,7 @@ export default function App() {
           {list.map(item => (
             <li key={item.id} className="taskContainer" >
               <button onClick={() => handleCheckTask(item.id)}>{item.completed ? "✔️" : "⬜"}</button>
-              <span className="task" style={{ textDecoration: item.completed ? 'line-through' : 'none', color: item.completed ? Colors.gray : Colors.black }}>{item.title}</span>
+              <span className="task" style={{ textDecoration: item.completed ? 'line-through' : 'none', color: item.completed ? Colors.gray : Colors.black }}>{name} / {item.title}</span>
               <button className="deleteButton" onClick={() => handleDeleteTask(item.id)}>❌</button>
             </li>
           ))}
