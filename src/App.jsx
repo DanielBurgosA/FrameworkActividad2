@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 
 import Colors from './assets/Colors';
@@ -58,11 +59,7 @@ export default function App() {
       <div className="section" style={{ flex: 3 }}>
         <ul className="taskList">
           {list.map(item => (
-            <li key={item.id} className="taskContainer" >
-              <button onClick={() => handleCheckTask(item.id)}>{item.completed ? "✔️" : "⬜"}</button>
-              <span className="task" style={{ textDecoration: item.completed ? 'line-through' : 'none', color: item.completed ? Colors.gray : Colors.black }}>{name} / {item.title}</span>
-              <button className="deleteButton" onClick={() => handleDeleteTask(item.id)}>❌</button>
-            </li>
+            <Task key={item.id} item={item} onClick={handleCheckTask} onDelete={handleDeleteTask} />
           ))}
         </ul>
       </div>
@@ -74,3 +71,19 @@ export default function App() {
     </div>
   );
 }
+
+function Task( { item, onClick, onDelete }) {
+  return (
+    <li className="taskContainer" >
+      <button onClick={() => onClick(item.id)}>{item.completed ? "✔️" : "⬜"}</button>
+      <span className="task" style={{ textDecoration: item.completed ? 'line-through' : 'none', color: item.completed ? Colors.gray : Colors.black }}>{name} / {item.title}</span>
+      <button className="deleteButton" onClick={() => onDelete(item.id)}>❌</button>
+    </li>
+  )
+}
+
+Task.propTypes = {
+  item: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
+};
