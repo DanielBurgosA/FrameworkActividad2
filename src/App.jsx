@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import './App.css'; 
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import './App.css';
 
-import Colors from './assets/Colors'; 
+import Colors from './assets/Colors';
 
 export default function App() {
   const colorsArray = ["#2455D9", "#24D94E", "#D92424", "#D9D424", "#9424D9", "#D97E24"];
@@ -12,7 +13,7 @@ export default function App() {
   const [taskTitle, setTaskTitle] = useState('');
 
   const taskCount = list.length;
-  const completedCount = list.reduce((count, task) => task.completed ? count + 1 : count, 0);
+  const completedCount = list.filter(task => task.completed).length;
 
   const handleColorChange = (color) => {
     setColor(color);
@@ -23,7 +24,7 @@ export default function App() {
   };
 
   const handleAddTask = () => {
-    if (/^\s*$/.test(taskTitle) !== false) return;
+    if (!taskTitle.trim()) return;
     const newTask = { title: taskTitle, completed: false, id: id };
     setList([...list, newTask]);
     setId(id+1);
@@ -31,19 +32,12 @@ export default function App() {
   };
 
   const handleCheckTask = (taskId) => {
-    setList(list.map(task => {
-      if (task.id === taskId) return { ...task, completed: !task.completed };
-      return task;
-    }));
+    setList(list.map(task => task.id === taskId ? { ...task, completed: !task.completed } : task));
   };
 
   const handleDeleteTask = (taskId) => {
     setList(list.filter(task => task.id !== taskId));
   };
-
-  useEffect(() => {
-
-  }, [list]);
 
   return (
     <div className="container">
@@ -62,11 +56,7 @@ export default function App() {
       <div className="section" style={{ flex: 3 }}>
         <ul className="taskList">
           {list.map(item => (
-            <li key={item.id} className="taskContainer" >
-              <button onClick={() => handleCheckTask(item.id)}>{item.completed ? "✔️" : "⬜"}</button>
-              <span className="task" style={{ textDecoration: item.completed ? 'line-through' : 'none', color: item.completed ? Colors.gray : Colors.black }}>{item.title}</span>
-              <button className="deleteButton" onClick={() => handleDeleteTask(item.id)}>❌</button>
-            </li>
+            <Task key={item.id} item={item} onClick={handleCheckTask} onDelete={handleDeleteTask} />
           ))}
         </ul>
       </div>
@@ -78,3 +68,19 @@ export default function App() {
     </div>
   );
 }
+
+function Task( { item, onClick, onDelete }) {
+  return (
+    <li className="taskContainer" >
+      <button onClick={() => onClick(item.id)}>{item.completed ? "✔️" : "⬜"}</button>
+      <span className="task" style={{ textDecoration: item.completed ? 'line-through' : 'none', color: item.completed ? Colors.gray : Colors.black }}>{name} / {item.title}</span>
+      <button className="deleteButton" onClick={() => onDelete(item.id)}>❌</button>
+    </li>
+  )
+}
+
+Task.propTypes = {
+  item: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
+};
