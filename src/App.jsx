@@ -24,7 +24,7 @@ export default function App() {
   };
 
   const handleAddTask = () => {
-    if (/^\s*$/.test(taskTitle) !== false) return;
+    if (!taskTitle.trim()) return;
     const newTask = { title: taskTitle, completed: false, id: id };
     setList([...list, newTask]);
     setId(id+1);
@@ -32,10 +32,7 @@ export default function App() {
   };
 
   const handleCheckTask = (taskId) => {
-    setList(list.map(task => {
-      if (task.id === taskId) return { ...task, completed: !task.completed };
-      return task;
-    }));
+    setList(list.map(task => task.id === taskId ? { ...task, completed: !task.completed } : task));
   };
 
   const handleDeleteTask = (taskId) => {
