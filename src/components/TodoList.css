@@ -12,15 +12,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  margin:-10px;
 }
 
 .sectionheader {
   width: 500px;
+  margin: 30px;
 }
 
 .input {
   width: 500px; 
   border-width: 6px;
+  border-radius: 10px;
 }
 
 .colorContainer {
@@ -82,18 +87,19 @@
   display: flex; 
   align-items: center;
   justify-content: space-between;
-  border-bottom-width: 1px;
-  border-color: var(--color-lightGray);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.726);
   max-width: 500px;
   min-width: 300px;
   margin: 15px;
+  padding: 6px;
 }
 
-.task {
-  color: var(--color-black);
-  font-weight: 700;
-  font-size: 16px;
-}
+  .task {
+    color: var(--color-black);
+    font-weight: 700;
+    font-size: 16px;
+    margin: 2px;
+  }
 
 .deleteIcon {
   color: var(--color-black);
@@ -109,7 +115,7 @@
 .colorSelector {
   width: 30px;
   height: 30px;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 .deleteContainer {
@@ -117,13 +123,18 @@
 }
 
 button{
-  border: #FFFFFF;
-  background-color: #FFFFFF;
-  border-radius: 5px;
-  color: #FFFFFF;
+  border: #ffffff83;
+  background-color: #ffffff83;
+  border-radius: 10px;
 }
 
 .addButton{
   width: 50px;
   height: 30px;
+}
+
+.sectionfooter{
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
